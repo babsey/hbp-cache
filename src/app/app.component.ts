@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     var location = window.location;
-    this.url = location.protocol + '//' + location.hostname + ':5000'
+    this.url = location.protocol + '//' + location.hostname + '/server'
     this.ping()
   }
 
@@ -24,12 +24,12 @@ export class AppComponent implements OnInit {
     this.http.get(this.url).subscribe(res => {
       console.log(res)
       this.log = res;
-      if (this.log['ok'] == false && this.log['url'] == "https://services.humanbrainproject.eu/oidc/login") {
-        window.location.reload()
-      }
     }, error => {
       console.log(error)
       this.log = error;
+      if (this.log['ok'] == false && this.log['url'] == "https://services.humanbrainproject.eu/oidc/login") {
+        window.location.reload()
+      }
     })
   }
 

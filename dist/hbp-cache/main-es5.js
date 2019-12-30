@@ -684,7 +684,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "ngOnInit",
         value: function ngOnInit() {
           var location = window.location;
-          this.url = location.protocol + '//' + location.hostname + ':5000';
+          this.url = location.protocol + '//' + location.hostname + '/server';
           this.ping();
         }
       }, {
@@ -695,13 +695,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.http.get(this.url).subscribe(function (res) {
             console.log(res);
             _this.log = res;
+          }, function (error) {
+            console.log(error);
+            _this.log = error;
 
             if (_this.log['ok'] == false && _this.log['url'] == "https://services.humanbrainproject.eu/oidc/login") {
               window.location.reload();
             }
-          }, function (error) {
-            console.log(error);
-            _this.log = error;
           });
         }
       }]);
