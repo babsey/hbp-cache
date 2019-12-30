@@ -695,6 +695,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.http.get(this.url).subscribe(function (res) {
             console.log(res);
             _this.log = res;
+
+            if (_this.log['ok'] == false && _this.log['url'] == "https://services.humanbrainproject.eu/oidc/login") {
+              window.location.reload();
+            }
           }, function (error) {
             console.log(error);
             _this.log = error;
